@@ -14,8 +14,8 @@ class App extends Component {
     };
 
     buttonClickHandler() {
-   
-   }
+        this.setState({ renderBall: true });
+      }
     renderBallOrButton() {
 		if (this.state.renderBall) {
 		    return <div className="ball" style={this.state.ballPosition}></div>
@@ -26,8 +26,13 @@ class App extends Component {
 
     // bind ArrowRight keydown event
     componentDidMount() {
-      
-    }
+        // Listen for keydown events globally
+        window.addEventListener('keydown', this.handleKeyDown);
+      }
+    componentWillUnmount() {
+        // Clean up the event listener when the component unmounts
+        window.removeEventListener('keydown', this.handleKeyDown);
+      }
 
     render() {
         return (
